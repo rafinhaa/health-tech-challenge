@@ -1,7 +1,7 @@
-import { StyleSheet, View, Text } from "react-native";
-import "@/styles/global.css";
+import { StyleSheet, Text, View } from "react-native"
 
-import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider"
+import "@/styles/global.css"
 
 export default function TabOneScreen() {
   return (
@@ -10,7 +10,7 @@ export default function TabOneScreen() {
         <Text>Olá mundo!</Text>
       </View>
     </GluestackUIProvider>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-});
+})
