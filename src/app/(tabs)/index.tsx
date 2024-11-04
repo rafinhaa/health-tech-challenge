@@ -1,3 +1,6 @@
+import { Inter_400Regular, Inter_600SemiBold } from "@expo-google-fonts/inter"
+import { Roboto_400Regular, Roboto_500Medium } from "@expo-google-fonts/roboto"
+import { useFonts } from "expo-font"
 import { useTranslation } from "react-i18next"
 import { StyleSheet, Text, View } from "react-native"
 
@@ -6,7 +9,16 @@ import "@/locales"
 import "@/styles/global.css"
 
 export default function TabOneScreen() {
+  const [fontsLoaded] = useFonts({
+    Inter_600SemiBold,
+    Inter_400Regular,
+    Roboto_500Medium,
+    Roboto_400Regular,
+  })
+
   const { t } = useTranslation()
+
+  if (!fontsLoaded) return
 
   return (
     <GluestackUIProvider mode="light">

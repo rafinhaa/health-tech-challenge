@@ -171,12 +171,25 @@ module.exports = {
           info: "rgb(var(--color-indicator-info)/<alpha-value>)",
           error: "rgb(var(--color-indicator-error)/<alpha-value>)",
         },
+        blue: {
+          600: "#2567E8",
+        },
+        body: {
+          primary: "#656565",
+        },
+        tabBar: {
+          secondary: "#5F6368",
+        },
       },
       fontFamily: {
         heading: undefined,
         body: undefined,
         mono: undefined,
         roboto: ["Roboto", "sans-serif"],
+        roboto400: "Roboto_400Regular",
+        roboto500: "Roboto_500Medium",
+        inter400: "Inter_400Regular",
+        inter600: "Inter_600SemiBold",
       },
       fontWeight: {
         extrablack: "950",

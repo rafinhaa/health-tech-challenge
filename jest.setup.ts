@@ -16,3 +16,7 @@ jest.mock("i18next", () => ({
     init: jest.fn(),
   }),
 }))
+
+jest.mock("expo-font", () => ({
+  useFonts: jest.fn().mockReturnValue([true]),
+}))
