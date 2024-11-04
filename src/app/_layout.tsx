@@ -1,14 +1,13 @@
 import { Inter_400Regular, Inter_600SemiBold } from "@expo-google-fonts/inter"
 import { Roboto_400Regular, Roboto_500Medium } from "@expo-google-fonts/roboto"
 import { useFonts } from "expo-font"
-import { useTranslation } from "react-i18next"
-import { StyleSheet, Text, View } from "react-native"
+import { Stack } from "expo-router"
 
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider"
 import "@/locales"
 import "@/styles/global.css"
 
-export default function TabOneScreen() {
+export default function AppLayout() {
   const [fontsLoaded] = useFonts({
     Inter_600SemiBold,
     Inter_400Regular,
@@ -16,23 +15,14 @@ export default function TabOneScreen() {
     Roboto_400Regular,
   })
 
-  const { t } = useTranslation()
-
   if (!fontsLoaded) return
 
   return (
-    <GluestackUIProvider mode="light">
-      <View style={styles.container}>
-        <Text>{t("startingMessage")}</Text>
-      </View>
+    <GluestackUIProvider>
+      <Stack initialRouteName="index" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="(signed)" />
+      </Stack>
     </GluestackUIProvider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-})
