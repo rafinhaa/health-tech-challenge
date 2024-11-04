@@ -1,0 +1,25 @@
+colors: true
+pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      glob: "*{.ts,tsx,js,jsx,json}"
+      run: yarn prettier:fix {staged_files}
+      stage_fixed: true
+    eslint:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: yarn lint:fix {staged_files}
+      stage_fixed: true
+    typeCheck:
+      glob: "*.{ts,tsx}"
+      run: yarn type:check
+      stage_fixed: true
+    test:
+      run: yarn test --findRelatedTests {staged_files} --passWithNoTests
+      stage_fixed: true
+pre-push:
+  parallel: true
+  commands:
+    test:
+      run: yarn test
+      stage_fixed: true
