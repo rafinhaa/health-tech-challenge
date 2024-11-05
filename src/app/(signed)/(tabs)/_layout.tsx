@@ -4,6 +4,7 @@ import React, { ComponentProps } from "react"
 import { useTranslation } from "react-i18next"
 import { ViewProps } from "react-native"
 import { cssInterop } from "react-native-css-interop"
+import { SafeAreaProvider } from "react-native-safe-area-context"
 
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"]
@@ -63,25 +64,27 @@ export default function TabLayout() {
   const { t } = useTranslation()
 
   return (
-    <TailwindBottomTab
-      tabBarClassName="h-[90px]"
-      tabBarActiveTintColorClassName="bg-blue-600"
-      tabBarInactiveTintColorClassName="color-tabBar-secondary"
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: t("start"),
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="config"
-        options={{
-          title: t("settings"),
-          tabBarIcon: ({ color }) => <TabBarIcon name="gear" color={color} />,
-        }}
-      />
-    </TailwindBottomTab>
+    <SafeAreaProvider>
+      <TailwindBottomTab
+        tabBarClassName="h-[90px]"
+        tabBarActiveTintColorClassName="bg-blue-600"
+        tabBarInactiveTintColorClassName="color-tabBar-secondary"
+      >
+        <Tabs.Screen
+          name="(topbar)"
+          options={{
+            tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+            title: t("start"),
+          }}
+        />
+        <Tabs.Screen
+          name="config"
+          options={{
+            title: t("settings"),
+            tabBarIcon: ({ color }) => <TabBarIcon name="gear" color={color} />,
+          }}
+        />
+      </TailwindBottomTab>
+    </SafeAreaProvider>
   )
 }

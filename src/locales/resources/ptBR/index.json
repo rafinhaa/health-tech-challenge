@@ -19,5 +19,9 @@
     "terms": "Termos de uso",
     "exit": "Sair da conta",
     "exitDescription": "Você tem certeza que deseja sair da conta?"
+  },
+  "products": {
+    "mens": "Produtos Masculinos",
+    "womans": "Produtos Femininos"
   }
 }
