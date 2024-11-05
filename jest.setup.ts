@@ -20,3 +20,11 @@ jest.mock("i18next", () => ({
 jest.mock("expo-font", () => ({
   useFonts: jest.fn().mockReturnValue([true]),
 }))
+
+jest.mock("@expo/vector-icons/MaterialCommunityIcons", () => {
+  const { Text } = require("react-native")
+  return {
+    __esModule: true,
+    default: Text,
+  }
+})
