@@ -5,7 +5,9 @@
     "enter": "Entrar",
     "requiredField": "Campo obrigatório",
     "cancel": "Cancelar",
-    "exit": "Sair"
+    "exit": "Sair",
+    "delete": "Excluir",
+    "edit": "Editar"
   },
   "loginScreen": {
     "welcome": "Bem-vindo de volta!",

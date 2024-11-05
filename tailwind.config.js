@@ -185,6 +185,9 @@ module.exports = {
           secondary: "#656565",
           tertiary: "#454545",
         },
+        price: {
+          primary: "#B20000",
+        },
       },
       fontFamily: {
         heading: undefined,
