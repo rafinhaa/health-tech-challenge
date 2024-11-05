@@ -182,6 +182,8 @@ module.exports = {
         },
         shadow: {
           primary: "#BDBDBD",
+          secondary: "#656565",
+          tertiary: "#454545",
         },
       },
       fontFamily: {
