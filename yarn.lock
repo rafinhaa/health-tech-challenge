@@ -1347,6 +1347,18 @@
   dependencies:
     tslib "2"
 
+"@gluestack-ui/alert-dialog@^0.1.31":
+  version "0.1.31"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/alert-dialog/-/alert-dialog-0.1.31.tgz#3dd910f0d20ae7e55fdcc01a67d5ffc41ebd6d4d"
+  integrity sha512-zxWSNM4q8TaZ6UVeLoJydzTD4fTgNqb4m4v+h04XV5i9SBH1It9dRQv0M/gG7YuY+0lu8LlWEnmeeGllFDYJ8w==
+  dependencies:
+    "@gluestack-ui/hooks" "0.1.11"
+    "@gluestack-ui/overlay" "^0.1.14"
+    "@gluestack-ui/utils" "^0.1.12"
+    "@react-native-aria/dialog" "^0.0.4"
+    "@react-native-aria/focus" "^0.2.9"
+    "@react-native-aria/interactions" "0.2.13"
+
 "@gluestack-ui/alert@^0.1.15":
   version "0.1.15"
   resolved "https://registry.npmjs.org/@gluestack-ui/alert/-/alert-0.1.15.tgz"
@@ -1414,7 +1426,7 @@
     patch-package "8.0.0"
     tailwind-variants "0.1.20"
 
-"@gluestack-ui/overlay@^0.1.12", "@gluestack-ui/overlay@^0.1.15", "@gluestack-ui/overlay@^0.1.7":
+"@gluestack-ui/overlay@^0.1.12", "@gluestack-ui/overlay@^0.1.14", "@gluestack-ui/overlay@^0.1.15", "@gluestack-ui/overlay@^0.1.7":
   version "0.1.15"
   resolved "https://registry.npmjs.org/@gluestack-ui/overlay/-/overlay-0.1.15.tgz"
   integrity sha512-yHInyJ/sH84X/3chun/tT+YfMIEX/680F31cMHQ5KsHRN4LwF3jOghUkS4592q3Wf32Zmqx0JwTrN8q6wOBT9A==
@@ -1832,6 +1844,18 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@legendapp/motion@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@legendapp/motion/-/motion-2.4.0.tgz#eef6f934b784e07fe94631d5648d412f34fa0c6b"
+  integrity sha512-AAYpRLGvxGD5hIGl9sVHyoUufr66zoH82PuxYcKiPSMdCBI3jwZFWh6CuHjV1leRKVIRk2py1rSvIVabG8eqcw==
+  dependencies:
+    "@legendapp/tools" "2.0.1"
+
+"@legendapp/tools@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@legendapp/tools/-/tools-2.0.1.tgz#995fe6cb3e2398b939f645505aa8e1abc84bd07f"
+  integrity sha512-Kxt0HWvWElRK6oybHRzcYxdgaKGwuaiRNreS7usW7QuHXRIHaH4yMcW2YNRG4DHE5fpefv+Bno/BohQcCE4FaA==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
@@ -1903,6 +1927,18 @@
     "@react-stately/toggle" "^3.2.1"
     "@react-types/checkbox" "^3.2.1"
 
+"@react-aria/dialog@*":
+  version "3.5.19"
+  resolved "https://registry.yarnpkg.com/@react-aria/dialog/-/dialog-3.5.19.tgz#568b937e8f63078dabcccbc291ef0cef044aa2d0"
+  integrity sha512-I3AJWpAWCajj8Ama8qLQ18Tc37ODyk+Ym3haYEl5L4QnuFc0dU1sMJr15fppDGIxYjwvTTfctyhaSCz+S+wpkw==
+  dependencies:
+    "@react-aria/focus" "^3.18.4"
+    "@react-aria/overlays" "^3.23.4"
+    "@react-aria/utils" "^3.25.3"
+    "@react-types/dialog" "^3.5.13"
+    "@react-types/shared" "^3.25.0"
+    "@swc/helpers" "^0.5.0"
+
 "@react-aria/focus@^3.18.4", "@react-aria/focus@^3.2.3":
   version "3.18.4"
   resolved "https://registry.npmjs.org/@react-aria/focus/-/focus-3.18.4.tgz"
@@ -1947,7 +1983,7 @@
     "@react-types/shared" "^3.25.0"
     "@swc/helpers" "^0.5.0"
 
-"@react-aria/overlays@^3.7.0":
+"@react-aria/overlays@^3.23.4", "@react-aria/overlays@^3.7.0":
   version "3.23.4"
   resolved "https://registry.npmjs.org/@react-aria/overlays/-/overlays-3.23.4.tgz"
   integrity sha512-MZUW6SUlTWOwKuFTqUTxW5BnvdW3Y9cEwanWuz98NX3ST7JYe/3ZcZhb37/fGW4uoGHnQ9icEwVf0rbMrK2STg==
@@ -2015,6 +2051,16 @@
     "@react-native-aria/toggle" "^0.2.8"
     "@react-native-aria/utils" "0.2.11"
     "@react-stately/toggle" "^3.2.1"
+
+"@react-native-aria/dialog@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@react-native-aria/dialog/-/dialog-0.0.4.tgz#2d24d14c394f50fae5b7f8a792c365bfcd9cf48c"
+  integrity sha512-l974yT9Z8KTSfY0rjaDNx5PsuGw50jRsdrkez+eP0P8ENx2uKHDzPPZDLo5XS5aiChFWbLaZFXp8rU0TRVOMmg==
+  dependencies:
+    "@react-aria/dialog" "*"
+    "@react-native-aria/utils" "0.2.11"
+    "@react-types/dialog" "*"
+    "@react-types/shared" "*"
 
 "@react-native-aria/focus@^0.2.7", "@react-native-aria/focus@^0.2.9":
   version "0.2.9"
@@ -2511,6 +2557,14 @@
   dependencies:
     "@react-types/shared" "^3.25.0"
 
+"@react-types/dialog@*", "@react-types/dialog@^3.5.13":
+  version "3.5.13"
+  resolved "https://registry.yarnpkg.com/@react-types/dialog/-/dialog-3.5.13.tgz#7100f9d5a25626cea2d2d8a755f4c0aa625faa68"
+  integrity sha512-9k8daVcAqQsySkzDY6NIVlyGxtpEip4TKuLyzAehthbv78GQardD5fHdjQ6eXPRS4I2qZrmytrFFrlOnwWVGHw==
+  dependencies:
+    "@react-types/overlays" "^3.8.10"
+    "@react-types/shared" "^3.25.0"
+
 "@react-types/overlays@^3.4.0", "@react-types/overlays@^3.8.10":
   version "3.8.10"
   resolved "https://registry.npmjs.org/@react-types/overlays/-/overlays-3.8.10.tgz"
@@ -2518,7 +2572,7 @@
   dependencies:
     "@react-types/shared" "^3.25.0"
 
-"@react-types/shared@^3.25.0":
+"@react-types/shared@*", "@react-types/shared@^3.25.0":
   version "3.25.0"
   resolved "https://registry.npmjs.org/@react-types/shared/-/shared-3.25.0.tgz"
   integrity sha512-OZSyhzU6vTdW3eV/mz5i6hQwQUhkRs7xwY2d1aqPvTdMe0+2cY7Fwp45PAiwYLEj73i9ro2FxF9qC4DvHGSCgQ==

@@ -3,7 +3,9 @@
   "settings": "Configurações",
   "common": {
     "enter": "Entrar",
-    "requiredField": "Campo obrigatório"
+    "requiredField": "Campo obrigatório",
+    "cancel": "Cancelar",
+    "exit": "Sair"
   },
   "loginScreen": {
     "welcome": "Bem-vindo de volta!",
