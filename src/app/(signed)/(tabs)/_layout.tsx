@@ -14,21 +14,20 @@ function TabBarIcon(props: {
 }
 
 type TailwindBottomTabProps = ComponentProps<typeof Tabs> & {
-  headerStyle?: ViewProps["style"]
   tabBarStyle?: ViewProps["style"]
   tabBarIconStyle?: ViewProps["style"]
   tabBarLabelStyle?: ViewProps["style"]
   tabBarActiveTintColor?: { color: string }
   tabBarInactiveTintColor?: { color: string }
+  tabBarItemStyle?: ViewProps["style"]
 }
 
 const TailwindBottomTab = cssInterop(
   ({
-    headerStyle,
-    tabBarStyle,
-    tabBarIconStyle,
     tabBarActiveTintColor,
     tabBarInactiveTintColor,
+    tabBarStyle,
+    tabBarItemStyle,
     screenOptions,
     ...props
   }: TailwindBottomTabProps) => {
@@ -39,9 +38,8 @@ const TailwindBottomTab = cssInterop(
           tabBarLabelStyle: {
             fontSize: 16,
           },
-          headerStyle,
           tabBarStyle,
-          tabBarIconStyle,
+          tabBarItemStyle,
           tabBarActiveTintColor: tabBarActiveTintColor?.color,
           tabBarInactiveTintColor: tabBarInactiveTintColor?.color,
           ...screenOptions,
@@ -51,12 +49,12 @@ const TailwindBottomTab = cssInterop(
     )
   },
   {
-    headerClassName: "headerStyle",
     tabBarClassName: "tabBarStyle",
     tabBarIconClassName: "tabBarIconStyle",
     tabBarActiveTintColorClassName: "tabBarActiveTintColor",
     tabBarInactiveTintColorClassName: "tabBarInactiveTintColor",
     tabBarLabelStyleClassName: "tabBarLabelStyle",
+    tabBarItemStyleClassName: "tabBarItemStyle",
   },
 )
 
@@ -67,6 +65,7 @@ export default function TabLayout() {
     <SafeAreaProvider>
       <TailwindBottomTab
         tabBarClassName="h-[90px]"
+        tabBarItemStyleClassName="h-[70px] p-2"
         tabBarActiveTintColorClassName="bg-blue-600"
         tabBarInactiveTintColorClassName="color-tabBar-secondary"
       >
