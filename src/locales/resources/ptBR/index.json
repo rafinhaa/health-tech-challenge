@@ -1,4 +1,14 @@
 {
   "start": "Início",
-  "settings": "Configurações"
+  "settings": "Configurações",
+  "common": {
+    "enter": "Entrar",
+    "requiredField": "Campo obrigatório"
+  },
+  "loginScreen": {
+    "welcome": "Bem-vindo de volta!",
+    "subtitle": "Insira seus dados para entrar na sua conta.",
+    "username": "Username",
+    "password": "Senha"
+  }
 }

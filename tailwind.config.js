@@ -180,6 +180,9 @@ module.exports = {
         tabBar: {
           secondary: "#5F6368",
         },
+        shadow: {
+          primary: "#BDBDBD",
+        },
       },
       fontFamily: {
         heading: undefined,
