@@ -10,5 +10,11 @@
     "subtitle": "Insira seus dados para entrar na sua conta.",
     "username": "Username",
     "password": "Senha"
+  },
+  "configScreen": {
+    "myData": "Meus dados",
+    "notifications": "Notificação",
+    "terms": "Termos de uso",
+    "exit": "Sair da conta"
   }
 }
