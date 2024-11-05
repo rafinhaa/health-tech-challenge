@@ -1,14 +1,26 @@
+import { useState } from "react"
 import { useTranslation } from "react-i18next"
 
 import { Avatar, AvatarFallbackText, AvatarImage } from "@/components/ui/avatar"
 import { Box } from "@/components/ui/box"
 import { Button, ButtonText } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
+import { Modal } from "@/components/ui/modal"
 import { SettingsButton } from "@/components/ui/settings-button"
 import { Text } from "@/components/ui/text"
 
 export default function Config() {
+  const [showAlertDialog, setShowAlertDialog] = useState(false)
+
   const { t } = useTranslation()
+
+  const handlePressOpenAlertDialog = () => {
+    setShowAlertDialog(true)
+  }
+
+  const handlePressCloseAlertDialog = () => {
+    setShowAlertDialog(false)
+  }
 
   return (
     <Box className="flex-1 bg-white ">
@@ -34,9 +46,19 @@ export default function Config() {
           <SettingsButton label={t("configScreen.terms")} icon="information" />
         </Box>
 
-        <Button className="bg-error-500 mt-8 w-full" size="lg">
+        <Button
+          className="bg-error-500 mt-8 w-full"
+          size="lg"
+          onPress={handlePressOpenAlertDialog}
+        >
           <ButtonText>{t("configScreen.exit")}</ButtonText>
         </Button>
+        <Modal
+          isOpen={showAlertDialog}
+          onCancel={handlePressCloseAlertDialog}
+          title={t("configScreen.exit")}
+          description={t("configScreen.exitDescription")}
+        />
       </Box>
     </Box>
   )
