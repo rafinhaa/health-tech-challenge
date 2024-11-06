@@ -1,5 +1,5 @@
 import { router } from "expo-router"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Controller } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { KeyboardAvoidingView, Platform } from "react-native"
@@ -25,13 +25,14 @@ import { AuthSchema } from "@/utils/schemas/auth-schema"
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
 
+  const usernameRef = useRef<any>(null)
+
   const { t } = useTranslation()
-
   const authForm = useAuthForm()
-
   const { mutate, isPending, status } = useAuthMutation({
     onError: () => {
-      authForm.reset()
+      authForm.resetField("password")
+      usernameRef?.current?.focus()
     },
     onSuccess: () => {
       router.push("/(signed)")
@@ -84,6 +85,7 @@ export default function Login() {
                       onChangeText={onChange}
                       autoCapitalize="none"
                       autoCorrect={false}
+                      ref={usernameRef}
                     />
                   </Input>
                   <FormControlError>
