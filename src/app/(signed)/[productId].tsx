@@ -10,8 +10,6 @@ import Icon from "@/components/ui/icon"
 import { Modal } from "@/components/ui/modal"
 import { Text } from "@/components/ui/text"
 
-//TODO: Criar modal
-
 export default function ProductDetails() {
   const [showAlertDialog, setShowAlertDialog] = useState(false)
   const { t } = useTranslation()
