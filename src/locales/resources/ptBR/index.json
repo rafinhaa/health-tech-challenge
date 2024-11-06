@@ -14,7 +14,8 @@
     "welcome": "Bem-vindo de volta!",
     "subtitle": "Insira seus dados para entrar na sua conta.",
     "username": "Username",
-    "password": "Senha"
+    "password": "Senha",
+    "loginFailed": "Username ou senha inválidos"
   },
   "configScreen": {
     "myData": "Meus dados",

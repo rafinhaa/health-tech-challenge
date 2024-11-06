@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -19,6 +20,8 @@ import { Heading } from "@/components/ui/heading"
 import Icon from "@/components/ui/icon"
 import { Input, InputField, InputSlot } from "@/components/ui/input"
 import { Text } from "@/components/ui/text"
+import { api } from "@/services/api"
+import { auth } from "@/services/endpoints/auth"
 
 const loginSchema = z.object({
   username: z.string().min(1),
@@ -32,6 +35,7 @@ export default function Login() {
 
   const { t } = useTranslation()
   const {
+    reset: formReset,
     handleSubmit,
     control,
     formState: { isSubmitting },
@@ -39,7 +43,18 @@ export default function Login() {
     resolver: zodResolver(loginSchema),
   })
 
-  const handlePressLogin = async (_data: LoginSchema) => {}
+  const { mutate, isPending, status } = useMutation({
+    mutationFn: (data: LoginSchema) => {
+      return auth(api, data)
+    },
+    onError: () => {
+      formReset()
+    },
+  })
+
+  const handlePressLogin = async (data: LoginSchema) => {
+    mutate(data)
+  }
 
   const handlePressShowPassword = () => {
     setShowPassword(!showPassword)
@@ -61,6 +76,11 @@ export default function Login() {
           </Text>
 
           <Box className="w-full bg-white rounded-2xl border border-shadow-primary px-6 py-[50px] gap-6">
+            {status === "error" && (
+              <Text className="font-inter400 text-[16px] color-error-700 self-center">
+                {t("loginScreen.loginFailed")}
+              </Text>
+            )}
             <Controller
               control={control}
               name="username"
@@ -143,7 +163,7 @@ export default function Login() {
               className="bg-blue-600 data-[hover=true]:bg-blue-400 data-[active=true]:bg-blue-400"
               onPress={handleSubmit(handlePressLogin)}
             >
-              {isSubmitting ? (
+              {isSubmitting || isPending ? (
                 <ButtonSpinner color="white" />
               ) : (
                 <ButtonText className="text-white">
