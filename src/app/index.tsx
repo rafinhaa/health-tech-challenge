@@ -1,4 +1,4 @@
-import { router } from "expo-router"
+import { Redirect, router } from "expo-router"
 import { useRef, useState } from "react"
 import { Controller } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -20,11 +20,13 @@ import { Input, InputField, InputSlot } from "@/components/ui/input"
 import { Text } from "@/components/ui/text"
 import { useAuthForm } from "@/hooks/useAuthForm"
 import { useAuthMutation } from "@/hooks/useAuthMutation"
+import { useUserStore } from "@/stores/useUserStore"
 import { AuthSchema } from "@/utils/schemas/auth-schema"
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
 
+  const { setUser, user } = useUserStore()
   const usernameRef = useRef<any>(null)
 
   const { t } = useTranslation()
@@ -34,8 +36,9 @@ export default function Login() {
       authForm.resetField("password")
       usernameRef?.current?.focus()
     },
-    onSuccess: () => {
-      router.push("/(signed)")
+    onSuccess: (data) => {
+      setUser(data.body)
+      router.replace("/signed")
     },
   })
 
@@ -46,6 +49,8 @@ export default function Login() {
   const handlePressShowPassword = () => {
     setShowPassword(!showPassword)
   }
+
+  if (user) return <Redirect href="/signed" />
 
   return (
     <Box className="flex-1 bg-white">

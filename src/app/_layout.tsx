@@ -3,6 +3,8 @@ import { Roboto_400Regular, Roboto_500Medium } from "@expo-google-fonts/roboto"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { useFonts } from "expo-font"
 import { Stack } from "expo-router"
+import * as SplashScreen from "expo-splash-screen"
+import { useEffect } from "react"
 
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider"
 import "@/locales"
@@ -10,7 +12,20 @@ import "@/styles/global.css"
 
 const queryClient = new QueryClient()
 
+SplashScreen.preventAutoHideAsync()
+
 function AppLayout() {
+  return (
+    <GluestackUIProvider>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="signed" />
+      </Stack>
+    </GluestackUIProvider>
+  )
+}
+
+export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     Inter_600SemiBold,
     Inter_400Regular,
@@ -18,19 +33,14 @@ function AppLayout() {
     Roboto_400Regular,
   })
 
-  if (!fontsLoaded) return
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync()
+    }
+  }, [fontsLoaded])
 
-  return (
-    <GluestackUIProvider>
-      <Stack initialRouteName="index" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="(signed)" />
-      </Stack>
-    </GluestackUIProvider>
-  )
-}
+  if (!fontsLoaded) return null
 
-export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <AppLayout />

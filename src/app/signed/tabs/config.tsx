@@ -1,3 +1,4 @@
+import { router } from "expo-router"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 
@@ -8,10 +9,12 @@ import { Heading } from "@/components/ui/heading"
 import { Modal } from "@/components/ui/modal"
 import { SettingsButton } from "@/components/ui/settings-button"
 import { Text } from "@/components/ui/text"
+import { useUserStore } from "@/stores/useUserStore"
 
 export default function Config() {
   const [showAlertDialog, setShowAlertDialog] = useState(false)
 
+  const { user, clearUser } = useUserStore()
   const { t } = useTranslation()
 
   const handlePressOpenAlertDialog = () => {
@@ -20,6 +23,12 @@ export default function Config() {
 
   const handlePressCloseAlertDialog = () => {
     setShowAlertDialog(false)
+  }
+
+  const handlePressOnDialogConfirm = () => {
+    clearUser()
+    setShowAlertDialog(false)
+    router.replace("/")
   }
 
   return (
@@ -36,10 +45,10 @@ export default function Config() {
         </Avatar>
         <Box className="flex-1 px-5 items-center">
           <Heading className="color-black font-inter600" size="2xl">
-            Jane Doe
+            {user?.firstName} {user?.lastName}
           </Heading>
           <Text className="color-shadow-secondary font-inter400" size="2xl">
-            jane.doe@example.com
+            {user?.email}
           </Text>
           <Box className="gap-4 mt-8">
             <SettingsButton label={t("configScreen.myData")} icon="account" />
@@ -63,6 +72,7 @@ export default function Config() {
           <Modal
             isOpen={showAlertDialog}
             onCancel={handlePressCloseAlertDialog}
+            onConfirm={handlePressOnDialogConfirm}
             title={t("configScreen.exit")}
             description={t("configScreen.exitDescription")}
             action="secondary"

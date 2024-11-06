@@ -13,7 +13,7 @@ export default function Mens() {
   const { t } = useTranslation()
 
   const handlePressProduct = (id: number) => {
-    return () => router.push(`/(signed)/${id}`)
+    return () => router.push(`/signed/${id}`)
   }
 
   return (

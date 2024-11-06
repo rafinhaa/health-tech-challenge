@@ -70,7 +70,7 @@ export default function TabLayout() {
         tabBarInactiveTintColorClassName="color-tabBar-secondary"
       >
         <Tabs.Screen
-          name="(topbar)"
+          name="topbar"
           options={{
             tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
             title: t("start"),
