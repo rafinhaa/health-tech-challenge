@@ -25,5 +25,8 @@
   "products": {
     "mens": "Produtos Masculinos",
     "womans": "Produtos Femininos"
+  },
+  "productDetails": {
+    "deleteDescription": "Você tem certeza que deseja excluir esse produto? Essa ação não poderá ser desfeita."
   }
 }

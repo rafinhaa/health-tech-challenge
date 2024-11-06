@@ -65,6 +65,7 @@ export default function Config() {
             onCancel={handlePressCloseAlertDialog}
             title={t("configScreen.exit")}
             description={t("configScreen.exitDescription")}
+            action="secondary"
           />
         </Box>
       </Box>
