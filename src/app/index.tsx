@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query"
+import { router } from "expo-router"
 import { useState } from "react"
 import { Controller } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -19,8 +19,7 @@ import Icon from "@/components/ui/icon"
 import { Input, InputField, InputSlot } from "@/components/ui/input"
 import { Text } from "@/components/ui/text"
 import { useAuthForm } from "@/hooks/useAuthForm"
-import { api } from "@/services/api"
-import { auth } from "@/services/endpoints/auth"
+import { useAuthMutation } from "@/hooks/useAuthMutation"
 import { AuthSchema } from "@/utils/schemas/auth-schema"
 
 export default function Login() {
@@ -30,12 +29,12 @@ export default function Login() {
 
   const authForm = useAuthForm()
 
-  const { mutate, isPending, status } = useMutation({
-    mutationFn: (data: AuthSchema) => {
-      return auth(api, data)
-    },
+  const { mutate, isPending, status } = useAuthMutation({
     onError: () => {
       authForm.reset()
+    },
+    onSuccess: () => {
+      router.push("/(signed)")
     },
   })
 
