@@ -1,10 +1,8 @@
-import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
-import { Controller, useForm } from "react-hook-form"
+import { Controller } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { KeyboardAvoidingView, Platform } from "react-native"
-import { z } from "zod"
 
 import { Box } from "@/components/ui/box"
 import { Button, ButtonSpinner, ButtonText } from "@/components/ui/button"
@@ -20,39 +18,28 @@ import { Heading } from "@/components/ui/heading"
 import Icon from "@/components/ui/icon"
 import { Input, InputField, InputSlot } from "@/components/ui/input"
 import { Text } from "@/components/ui/text"
+import { useAuthForm } from "@/hooks/useAuthForm"
 import { api } from "@/services/api"
 import { auth } from "@/services/endpoints/auth"
-
-const loginSchema = z.object({
-  username: z.string().min(1),
-  password: z.string().min(1),
-})
-
-type LoginSchema = z.infer<typeof loginSchema>
+import { AuthSchema } from "@/utils/schemas/auth-schema"
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
 
   const { t } = useTranslation()
-  const {
-    reset: formReset,
-    handleSubmit,
-    control,
-    formState: { isSubmitting },
-  } = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
-  })
+
+  const authForm = useAuthForm()
 
   const { mutate, isPending, status } = useMutation({
-    mutationFn: (data: LoginSchema) => {
+    mutationFn: (data: AuthSchema) => {
       return auth(api, data)
     },
     onError: () => {
-      formReset()
+      authForm.reset()
     },
   })
 
-  const handlePressLogin = async (data: LoginSchema) => {
+  const handlePressLogin = async (data: AuthSchema) => {
     mutate(data)
   }
 
@@ -82,7 +69,7 @@ export default function Login() {
               </Text>
             )}
             <Controller
-              control={control}
+              control={authForm.control}
               name="username"
               render={({ field: { onChange, value }, formState }) => (
                 <FormControl isInvalid={!!formState.errors.username}>
@@ -118,7 +105,7 @@ export default function Login() {
               )}
             />
             <Controller
-              control={control}
+              control={authForm.control}
               name="password"
               render={({ field: { onChange, value }, formState }) => (
                 <FormControl isInvalid={!!formState.errors.password}>
@@ -161,9 +148,9 @@ export default function Login() {
             />
             <Button
               className="bg-blue-600 data-[hover=true]:bg-blue-400 data-[active=true]:bg-blue-400"
-              onPress={handleSubmit(handlePressLogin)}
+              onPress={authForm.handleSubmit(handlePressLogin)}
             >
-              {isSubmitting || isPending ? (
+              {authForm.formState.isSubmitting || isPending ? (
                 <ButtonSpinner color="white" />
               ) : (
                 <ButtonText className="text-white">
