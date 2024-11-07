@@ -66,4 +66,17 @@ export class Axios implements HttpClient {
       body: response.data,
     }
   }
+
+  put = async <T, P = unknown, D = unknown>({
+    url,
+    signal,
+    data,
+  }: HttpClientParams<P, D>) => {
+    const response = await api.put<T>(url, data, { signal })
+
+    return {
+      statusCode: response.status,
+      body: response.data,
+    }
+  }
 }

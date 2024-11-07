@@ -25,4 +25,8 @@ export interface HttpClient {
   delete: <T, P = unknown, D = unknown>(
     data: HttpClientParams<P, D>,
   ) => Promise<HttpResponse<T>>
+
+  put: <T, P = unknown, D = unknown>(
+    data: HttpClientParams<P, D>,
+  ) => Promise<HttpResponse<T>>
 }
