@@ -1,5 +1,6 @@
 import { useQueries } from "@tanstack/react-query"
 
+import { QUERY_KEYS } from "@/constants/queries"
 import { api } from "@/services/api"
 import { womensBags } from "@/services/endpoints/womens-bags"
 import { womensDresses } from "@/services/endpoints/womens-dresses"
@@ -11,31 +12,31 @@ export function useGetWomensProducts() {
   const womansProducts = useQueries({
     queries: [
       {
-        queryKey: ["womens-bags"],
+        queryKey: [QUERY_KEYS.womansBags],
         queryFn: () => {
           return womensBags(api)
         },
       },
       {
-        queryKey: ["womans-dresses"],
+        queryKey: [QUERY_KEYS.womansDresses],
         queryFn: () => {
           return womensDresses(api)
         },
       },
       {
-        queryKey: ["womens-jewellery"],
+        queryKey: [QUERY_KEYS.womansJewellery],
         queryFn: () => {
           return womensJewellery(api)
         },
       },
       {
-        queryKey: ["womens-shoes"],
+        queryKey: [QUERY_KEYS.womansShoes],
         queryFn: () => {
           return womensShoes(api)
         },
       },
       {
-        queryKey: ["womens-watches"],
+        queryKey: [QUERY_KEYS.womansWatches],
         queryFn: () => {
           return womensWatches(api)
         },
