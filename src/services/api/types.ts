@@ -1,6 +1,6 @@
-export type HttpClientParams<R = unknown> = {
+export type HttpClientParams<P> = {
   url: string
-  params?: R & PaginateParams
+  params?: P & PaginateParams
   signal?: AbortSignal
 }
 
@@ -15,5 +15,6 @@ export type HttpResponse<T> = {
 }
 
 export interface HttpClient {
-  post: <T, P>(data: HttpClientParams<P>) => Promise<HttpResponse<T>>
+  post: <T, P = unknown>(data: HttpClientParams<P>) => Promise<HttpResponse<T>>
+  get: <T, P = unknown>(data: HttpClientParams<P>) => Promise<HttpResponse<T>>
 }
