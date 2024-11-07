@@ -5,6 +5,7 @@ export type Product = {
   price: number
   discountPercentage: number
   thumbnail: string
+  images: string[]
 }
 
 export type ProductHttpResponse = {

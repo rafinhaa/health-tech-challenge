@@ -2,18 +2,29 @@ import { useLocalSearchParams } from "expo-router"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Image } from "react-native"
+import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 import { Box } from "@/components/ui/box"
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import Icon from "@/components/ui/icon"
 import { Modal } from "@/components/ui/modal"
+import { Spinner } from "@/components/ui/spinner"
 import { Text } from "@/components/ui/text"
+import { useFetchProduct } from "@/hooks/useFetchProduct"
 
 export default function ProductDetails() {
   const [showAlertDialog, setShowAlertDialog] = useState(false)
+  const insets = useSafeAreaInsets()
   const { t } = useTranslation()
-  const _localSearchParams = useLocalSearchParams<{ productId: string }>()
+  const { productId } = useLocalSearchParams<{ productId: string }>()
+
+  const {
+    data: product,
+    isPending,
+    error,
+    refetch,
+  } = useFetchProduct({ productId: productId })
 
   const handlePressOpenAlertDialog = () => {
     setShowAlertDialog(true)
@@ -23,30 +34,48 @@ export default function ProductDetails() {
     setShowAlertDialog(false)
   }
 
+  if (isPending) {
+    return <Spinner className="flex-1 bg-white" size="large" />
+  }
+
+  if (error) {
+    return (
+      <Box className="flex-1 items-center justify-center gap-2">
+        <Heading className="text-center">{t("common.fetchError")}</Heading>
+        <Button
+          className="bg-blue-600 data-[hover=true]:bg-blue-400 data-[active=true]:bg-blue-400"
+          onPress={() => refetch()}
+        >
+          <ButtonText>{t("common.tryAgain")}</ButtonText>
+        </Button>
+      </Box>
+    )
+  }
+
   return (
-    <Box className="flex-1 bg-white px-4 justify-between mb-[30px]">
-      <Box className="gap-1">
+    <Box
+      className={`flex-1 bg-white px-4 justify-between mb-[${insets.bottom}px]`}
+    >
+      <Box className="gap-2">
         <Image
           source={{
-            uri: "https://cdn.dummyjson.com/products/images/mens-watches/Brown%20Leather%20Belt%20Watch/thumbnail.png",
+            uri: product?.images[0],
           }}
           className="w-full h-[300px] self-center"
         />
         <Heading className="font-inter600 text-[24px] color-black">
-          Essence Mascara Lash Princess
+          {product?.title}
         </Heading>
         <Box className="flex-row gap-1 items-end">
           <Text className="font-inter600 text-[24px] color-price-primary">
-            R$ 35,50
+            {product?.price}
           </Text>
           <Text className="font-inter600 text-[20px] color-body-primary line-through">
-            R$ 50,00
+            {product?.discountPercentage}
           </Text>
         </Box>
         <Text className="font-inter400 text-[16px] color-body-primary">
-          The Essence Mascara Lash Princess is a popular mascara known for its
-          volumizing and lengthening effects. Achieve dramatic lashes with this
-          long-lasting and cruelty-free formula.
+          {product?.description}
         </Text>
       </Box>
       <Box className="gap-2">
