@@ -10,7 +10,8 @@
     "edit": "Editar",
     "noProducts": "Nenhum produto encontrado.",
     "fetchError": "Erro ao buscar produtos.",
-    "tryAgain": "Tentar novamente"
+    "tryAgain": "Tentar novamente",
+    "save": "Salvar"
   },
   "loginScreen": {
     "welcome": "Bem-vindo de volta!",
@@ -38,6 +39,11 @@
     "description": "Descrição",
     "price": "Preço (R$)",
     "discountPercentage": "Desconto (%)",
-    "imageUrl": "URL da imagem"
+    "imageUrl": "URL da imagem",
+    "fieldValueMinRequired": "{{field}} deve ter pelo menos {{min}} caracteres",
+    "fieldValueMaxRequired": "{{field}} deve ter no máximo {{max}} caracteres.",
+    "positiveNumber": "O preço deve ser um número positivo.",
+    "discountPercentageInvalid": "O desconto deve ser um número entre 0 e 100.",
+    "imagemInvalid": "A URL da imagem deve ser válida."
   }
 }
