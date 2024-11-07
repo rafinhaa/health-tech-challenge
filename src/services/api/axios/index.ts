@@ -45,4 +45,20 @@ export class Axios implements HttpClient {
       body: response.data,
     }
   }
+
+  delete = async <T, P = unknown>({
+    url,
+    params,
+    signal,
+  }: HttpClientParams<P>) => {
+    const urlParams = createUrlParams(params)
+
+    const urlWithParams = `${url}?${urlParams.toString()}`
+
+    const response = await api.delete<T>(urlWithParams, { signal })
+    return {
+      statusCode: response.status,
+      body: response.data,
+    }
+  }
 }

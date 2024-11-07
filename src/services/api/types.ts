@@ -17,4 +17,7 @@ export type HttpResponse<T> = {
 export interface HttpClient {
   post: <T, P = unknown>(data: HttpClientParams<P>) => Promise<HttpResponse<T>>
   get: <T, P = unknown>(data: HttpClientParams<P>) => Promise<HttpResponse<T>>
+  delete: <T, P = unknown>(
+    data: HttpClientParams<P>,
+  ) => Promise<HttpResponse<T>>
 }
