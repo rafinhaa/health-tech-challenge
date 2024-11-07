@@ -18,23 +18,28 @@ const createUrlParams = <T>(params: T) => {
 }
 
 export class Axios implements HttpClient {
-  post = async <T, P = unknown>({
+  post = async <T, P = unknown, D = unknown>({
     url,
     params,
     signal,
-  }: HttpClientParams<P>) => {
-    const response = await api.post<T>(url, { ...params, signal })
+    data,
+  }: HttpClientParams<P, D>) => {
+    const response = await api.post<T>(url, data, {
+      params,
+      signal,
+    })
+
     return {
       statusCode: response.status,
       body: response.data,
     }
   }
 
-  get = async <T, P = unknown>({
+  get = async <T, P = unknown, D = unknown>({
     url,
     params,
     signal,
-  }: HttpClientParams<P>) => {
+  }: HttpClientParams<P, D>) => {
     const urlParams = createUrlParams(params)
 
     const urlWithParams = `${url}?${urlParams.toString()}`
@@ -46,11 +51,11 @@ export class Axios implements HttpClient {
     }
   }
 
-  delete = async <T, P = unknown>({
+  delete = async <T, P = unknown, D = unknown>({
     url,
     params,
     signal,
-  }: HttpClientParams<P>) => {
+  }: HttpClientParams<P, D>) => {
     const urlParams = createUrlParams(params)
 
     const urlWithParams = `${url}?${urlParams.toString()}`
