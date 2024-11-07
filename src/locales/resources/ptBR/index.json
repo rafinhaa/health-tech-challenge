@@ -44,6 +44,8 @@
     "fieldValueMaxRequired": "{{field}} deve ter no máximo {{max}} caracteres.",
     "positiveNumber": "O preço deve ser um número positivo.",
     "discountPercentageInvalid": "O desconto deve ser um número entre 0 e 100.",
-    "imagemInvalid": "A URL da imagem deve ser válida."
+    "imagemInvalid": "A URL da imagem deve ser válida.",
+    "editProduct": "Editar produto",
+    "editProductDescription": "Você tem certeza que deseja editar esse produto? Essa ação não poderá ser desfeita."
   }
 }

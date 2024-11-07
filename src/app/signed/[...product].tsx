@@ -1,4 +1,5 @@
 import { router, useLocalSearchParams } from "expo-router"
+import { useState } from "react"
 import { Controller } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { KeyboardAvoidingView, Platform } from "react-native"
@@ -16,27 +17,63 @@ import {
 } from "@/components/ui/form-control"
 import Icon from "@/components/ui/icon"
 import { Input, InputField } from "@/components/ui/input"
+import { Modal } from "@/components/ui/modal"
+import { Spinner } from "@/components/ui/spinner"
 import { useAddProductMutation } from "@/hooks/useAddProductMutation"
+import { useFetchProduct } from "@/hooks/useFetchProduct"
 import { useProductForm } from "@/hooks/useProductForm"
+import { useUpdateProductMutation } from "@/hooks/useUpdateProductMutation"
 import { numberToCurrency } from "@/utils/currency"
 import { ProductSchema } from "@/utils/schemas/product-schema"
 
 export default function AddProduct() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const insets = useSafeAreaInsets()
   const { t } = useTranslation()
 
-  const _params = useLocalSearchParams()
+  const { productId, type } = useLocalSearchParams<{
+    productId: string
+    type: "add" | "edit"
+  }>()
 
-  const productForm = useProductForm()
+  const product = useFetchProduct({
+    productId: productId,
+  })
+  const productForm = useProductForm({
+    initialValues: product.data,
+  })
   const addProduct = useAddProductMutation({
     onSuccess: () => {
       router.back()
     },
   })
 
+  const updateProduct = useUpdateProductMutation({
+    onSuccess: () => {
+      router.back()
+    },
+  })
+
+  const handlePressSaveProduct = (data: ProductSchema) => {
+    const save = {
+      add: () => handlePressAddProduct(data),
+      edit: () => setIsModalOpen(true),
+    }[type]
+
+    save()
+  }
+
   const handlePressAddProduct = (data: ProductSchema) => {
     addProduct.mutate(data)
   }
+
+  const handlePressEditProduct = (data: ProductSchema) => {
+    updateProduct.mutate(data)
+  }
+
+  if (type === "edit" && product.isPending)
+    return <Spinner className="flex-1 bg-white" size="large" />
 
   return (
     <KeyboardAvoidingView
@@ -237,14 +274,25 @@ export default function AddProduct() {
           size="lg"
           className={` bg-blue-600 data-[hover=true]:bg-blue-400 data-[active=true]:bg-blue-400 mb-[${insets.bottom}px]`}
           disabled={productForm.formState.isSubmitting}
-          onPress={productForm.handleSubmit(handlePressAddProduct)}
+          onPress={productForm.handleSubmit(handlePressSaveProduct)}
         >
-          {addProduct.isPending || productForm.formState.isSubmitting ? (
+          {addProduct.isPending ||
+          updateProduct.isPending ||
+          productForm.formState.isSubmitting ? (
             <ButtonSpinner />
           ) : (
             <ButtonText>{t("common.save")}</ButtonText>
           )}
         </Button>
+        <Modal
+          action="primary"
+          actionText={t("common.edit")}
+          isOpen={isModalOpen}
+          onCancel={() => setIsModalOpen(false)}
+          onConfirm={() => handlePressEditProduct(productForm.getValues())}
+          title={t("product.editProduct")}
+          description={t("product.editProductDescription")}
+        />
       </Box>
     </KeyboardAvoidingView>
   )

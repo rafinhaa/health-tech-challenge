@@ -3,6 +3,7 @@ import { z } from "zod"
 import i18n from "@/locales"
 
 export const productSchema = z.object({
+  id: z.number().optional(),
   name: z
     .string({
       required_error: i18n.t("common.requiredField"),

@@ -64,6 +64,10 @@ export default function ProductDetails() {
     setShowAlertDialog(false)
   }
 
+  const handlePressEditProduct = () => {
+    router.push(`/signed/tabs/add-product?type=edit&productId=${productId}`)
+  }
+
   if (isPending) {
     return <Spinner className="flex-1 bg-white" size="large" />
   }
@@ -105,7 +109,10 @@ export default function ProductDetails() {
         </Text>
       </Box>
       <Box className="gap-2">
-        <Button className="bg-blue-600 data-[hover=true]:bg-blue-400 data-[active=true]:bg-blue-400">
+        <Button
+          className="bg-blue-600 data-[hover=true]:bg-blue-400 data-[active=true]:bg-blue-400"
+          onPress={handlePressEditProduct}
+        >
           <ButtonText>{t("common.edit")}</ButtonText>
           <ButtonIcon
             as={() => (
