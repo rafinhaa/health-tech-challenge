@@ -14,3 +14,8 @@ export type ProductHttpResponse = {
   skip: number
   total: number
 }
+
+export type DeletedProductHttpResponse = Product & {
+  isDeleted: boolean
+  deletedOn: string
+}
