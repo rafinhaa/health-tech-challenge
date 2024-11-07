@@ -32,5 +32,12 @@
   },
   "productDetails": {
     "deleteDescription": "Você tem certeza que deseja excluir esse produto? Essa ação não poderá ser desfeita."
+  },
+  "product": {
+    "name": "Nome",
+    "description": "Descrição",
+    "price": "Preço (R$)",
+    "discountPercentage": "Desconto (%)",
+    "imageUrl": "URL da imagem"
   }
 }
