@@ -23,12 +23,12 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
         resizeMode="cover"
       />
       <Divider className="my-0.5 h-[1px] border-shadow-primary" />
-      <Box className="p-2 flex-1">
+      <Box className="p-2 grow">
         <Heading className="font-inter600 text-[16px] mb-2" numberOfLines={2}>
           {product.title}
         </Heading>
         <Text
-          className="font-inter400 text-[10px] color-body-primary mb-4"
+          className="font-inter400 text-[10px] color-body-primary"
           numberOfLines={4}
         >
           {product.description}
