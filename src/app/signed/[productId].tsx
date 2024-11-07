@@ -1,4 +1,4 @@
-import { useLocalSearchParams } from "expo-router"
+import { router, useLocalSearchParams } from "expo-router"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Image } from "react-native"
@@ -12,6 +12,7 @@ import { Modal } from "@/components/ui/modal"
 import { Spinner } from "@/components/ui/spinner"
 import { Text } from "@/components/ui/text"
 import { TryAgain } from "@/components/ui/try-again"
+import { useDeleteProductMutation } from "@/hooks/useDeleteProductMutation"
 import { useFetchProduct } from "@/hooks/useFetchProduct"
 
 export default function ProductDetails() {
@@ -27,11 +28,22 @@ export default function ProductDetails() {
     refetch,
   } = useFetchProduct({ productId: productId })
 
+  const { mutate } = useDeleteProductMutation({
+    onSuccess: () => {
+      router.back()
+    },
+  })
+
   const handlePressOpenAlertDialog = () => {
     setShowAlertDialog(true)
   }
 
   const handlePressCloseAlertDialog = () => {
+    setShowAlertDialog(false)
+  }
+
+  const handlePressConfirmAlertDialog = () => {
+    mutate(productId)
     setShowAlertDialog(false)
   }
 
@@ -102,6 +114,7 @@ export default function ProductDetails() {
         <Modal
           isOpen={showAlertDialog}
           onCancel={handlePressCloseAlertDialog}
+          onConfirm={handlePressConfirmAlertDialog}
           title={t("common.delete")}
           description={t("productDetails.deleteDescription")}
           action="secondary"
