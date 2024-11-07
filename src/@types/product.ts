@@ -6,3 +6,10 @@ export type Product = {
   discountPercentage: number
   thumbnail: string
 }
+
+export type ProductHttpResponse = {
+  products: Product[]
+  limit: number
+  skip: number
+  total: number
+}
