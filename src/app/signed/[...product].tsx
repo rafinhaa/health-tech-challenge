@@ -17,6 +17,7 @@ import {
 import Icon from "@/components/ui/icon"
 import { Input, InputField } from "@/components/ui/input"
 import { useProductForm } from "@/hooks/useProductForm"
+import { numberToCurrency } from "@/utils/currency"
 import { ProductSchema } from "@/utils/schemas/product-schema"
 
 export default function AddProduct() {
@@ -126,7 +127,8 @@ export default function AddProduct() {
                     autoCapitalize="none"
                     autoCorrect={false}
                     value={value}
-                    onChangeText={onChange}
+                    onChangeText={(text) => onChange(numberToCurrency(text))}
+                    keyboardType="numeric"
                   />
                 </Input>
                 <FormControlError>

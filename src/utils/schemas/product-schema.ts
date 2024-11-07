@@ -39,9 +39,15 @@ export const productSchema = z.object({
     .string({
       required_error: i18n.t("common.requiredField"),
     })
-    .refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) > 0, {
-      message: i18n.t("product.positiveNumber"),
-    }),
+    .refine(
+      (val) => {
+        const num = parseFloat(val.replace(/[R$,.]/g, "")) / 100
+        return num > 0
+      },
+      {
+        message: i18n.t("product.positiveNumber"),
+      },
+    ),
   discountPercentage: z
     .string({
       required_error: i18n.t("common.requiredField"),
