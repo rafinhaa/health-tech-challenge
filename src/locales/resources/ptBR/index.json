@@ -8,7 +8,9 @@
     "exit": "Sair",
     "delete": "Excluir",
     "edit": "Editar",
-    "noProducts": "Nenhum produto encontrado."
+    "noProducts": "Nenhum produto encontrado.",
+    "fetchError": "Erro ao buscar produtos.",
+    "tryAgain": "Tentar novamente"
   },
   "loginScreen": {
     "welcome": "Bem-vindo de volta!",

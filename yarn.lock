@@ -1447,6 +1447,11 @@
   dependencies:
     "@react-native-aria/focus" "^0.2.7"
 
+"@gluestack-ui/spinner@^0.1.14":
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/spinner/-/spinner-0.1.14.tgz#b0afb1e310b409b343d6f59f9127642a97ce224b"
+  integrity sha512-6uLUvyJMhYR/sIMU/purfaYPqaKiLqnBi0n0LiWRsJNGDgENqdWVHMJpGTdWaFuCLxumZ7xnp0wG2KAdG9UyyQ==
+
 "@gluestack-ui/textarea@^0.1.23":
   version "0.1.23"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/textarea/-/textarea-0.1.23.tgz#ac15d2eb693263c8550070ce3ee8611cf92b20b9"

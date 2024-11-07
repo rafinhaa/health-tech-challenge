@@ -23,7 +23,7 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
         resizeMode="cover"
       />
       <Divider className="my-0.5 h-[1px] border-shadow-primary" />
-      <Box className="p-2">
+      <Box className="p-2 flex-1">
         <Heading className="font-inter600 text-[16px] mb-2" numberOfLines={2}>
           {product.title}
         </Heading>
@@ -33,12 +33,12 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
         >
           {product.description}
         </Text>
-        <Box className="flex-row gap-1 items-end">
-          <Heading className="font-inter600">{product.price}</Heading>
-          <Text className="font-inter600 color-body-primary line-through">
-            {product.discountPercentage}
-          </Text>
-        </Box>
+      </Box>
+      <Box className="flex-row gap-1 items-end p-2">
+        <Heading className="font-inter600">{product.price}</Heading>
+        <Text className="font-inter600 color-body-primary line-through">
+          {product.discountPercentage}
+        </Text>
       </Box>
     </TouchableOpacity>
   )
