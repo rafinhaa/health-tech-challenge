@@ -1,4 +1,4 @@
-import { useLocalSearchParams } from "expo-router"
+import { router, useLocalSearchParams } from "expo-router"
 import { Controller } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { KeyboardAvoidingView, Platform } from "react-native"
@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form-control"
 import Icon from "@/components/ui/icon"
 import { Input, InputField } from "@/components/ui/input"
+import { useAddProductMutation } from "@/hooks/useAddProductMutation"
 import { useProductForm } from "@/hooks/useProductForm"
 import { numberToCurrency } from "@/utils/currency"
 import { ProductSchema } from "@/utils/schemas/product-schema"
@@ -27,8 +28,15 @@ export default function AddProduct() {
   const _params = useLocalSearchParams()
 
   const productForm = useProductForm()
+  const addProduct = useAddProductMutation({
+    onSuccess: () => {
+      router.back()
+    },
+  })
 
-  const handlePressAddProduct = (_data: ProductSchema) => {}
+  const handlePressAddProduct = (data: ProductSchema) => {
+    addProduct.mutate(data)
+  }
 
   return (
     <KeyboardAvoidingView
@@ -231,8 +239,11 @@ export default function AddProduct() {
           disabled={productForm.formState.isSubmitting}
           onPress={productForm.handleSubmit(handlePressAddProduct)}
         >
-          {productForm.formState.isSubmitting && <ButtonSpinner />}
-          <ButtonText>{t("common.save")}</ButtonText>
+          {addProduct.isPending || productForm.formState.isSubmitting ? (
+            <ButtonSpinner />
+          ) : (
+            <ButtonText>{t("common.save")}</ButtonText>
+          )}
         </Button>
       </Box>
     </KeyboardAvoidingView>

@@ -26,7 +26,7 @@ export const productSchema = z.object({
     .min(20, {
       message: i18n.t("product.fieldValueMinRequired", {
         field: i18n.t("product.description"),
-        min: 2,
+        min: 20,
       }),
     })
     .max(500, {
