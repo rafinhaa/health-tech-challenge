@@ -9,6 +9,11 @@ export default function SignedLayout() {
         name="[productId]"
         options={{ headerShown: true, title: "" }}
       />
+
+      <Stack.Screen
+        name="[...product]"
+        options={{ headerShown: true, title: "Adicionar produto" }}
+      />
     </Stack>
   )
 }
