@@ -4,11 +4,11 @@ import { useTranslation } from "react-i18next"
 import { FlatList } from "react-native"
 
 import { Box } from "@/components/ui/box"
-import { Button, ButtonText } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { ProductCard } from "@/components/ui/product-card"
 import RenderProductsContent from "@/components/ui/render-products-content"
 import { Spinner } from "@/components/ui/spinner"
+import { TryAgain } from "@/components/ui/try-again"
 import { useGetWomensProducts } from "@/hooks/useGetWomensProducts"
 
 export default function Womans() {
@@ -30,15 +30,7 @@ export default function Womans() {
         }}
         renderLoading={() => <Spinner className="flex-1" size="large" />}
         renderError={() => (
-          <Box className="flex-1 items-center justify-center gap-2">
-            <Heading className="text-center">{t("common.fetchError")}</Heading>
-            <Button
-              className="bg-blue-600 data-[hover=true]:bg-blue-400 data-[active=true]:bg-blue-400"
-              onPress={() => womansProducts.refetch()}
-            >
-              <ButtonText>{t("common.tryAgain")}</ButtonText>
-            </Button>
-          </Box>
+          <TryAgain onTryAgain={() => womansProducts.refetch()} />
         )}
         renderData={(data) => (
           <FlatList

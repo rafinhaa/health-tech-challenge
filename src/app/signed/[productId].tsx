@@ -11,6 +11,7 @@ import Icon from "@/components/ui/icon"
 import { Modal } from "@/components/ui/modal"
 import { Spinner } from "@/components/ui/spinner"
 import { Text } from "@/components/ui/text"
+import { TryAgain } from "@/components/ui/try-again"
 import { useFetchProduct } from "@/hooks/useFetchProduct"
 
 export default function ProductDetails() {
@@ -40,15 +41,11 @@ export default function ProductDetails() {
 
   if (error) {
     return (
-      <Box className="flex-1 items-center justify-center gap-2">
-        <Heading className="text-center">{t("common.fetchError")}</Heading>
-        <Button
-          className="bg-blue-600 data-[hover=true]:bg-blue-400 data-[active=true]:bg-blue-400"
-          onPress={() => refetch()}
-        >
-          <ButtonText>{t("common.tryAgain")}</ButtonText>
-        </Button>
-      </Box>
+      <TryAgain
+        onTryAgain={() => {
+          refetch()
+        }}
+      />
     )
   }
 
