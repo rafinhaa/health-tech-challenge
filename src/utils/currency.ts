@@ -7,3 +7,10 @@ export const numberToCurrency = (value: number | string) => {
     currency: "BRL",
   }).format(parseFloat(floatValue))
 }
+
+export const formatValueToLocaleString = (value: number | string) => {
+  return Number(value).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  })
+}

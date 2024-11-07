@@ -14,6 +14,8 @@ import { Text } from "@/components/ui/text"
 import { TryAgain } from "@/components/ui/try-again"
 import { useDeleteProductMutation } from "@/hooks/useDeleteProductMutation"
 import { useFetchProduct } from "@/hooks/useFetchProduct"
+import { calcDiscount } from "@/utils/calc-discount"
+import { formatValueToLocaleString } from "@/utils/currency"
 
 export default function ProductDetails() {
   const [showAlertDialog, setShowAlertDialog] = useState(false)
@@ -27,6 +29,21 @@ export default function ProductDetails() {
     error,
     refetch,
   } = useFetchProduct({ productId: productId })
+
+  const hasDiscount = product?.discountPercentage! > 0
+
+  const valueWithDiscount = calcDiscount(
+    product?.price,
+    product?.discountPercentage,
+  )
+  const discountLocaleString = formatValueToLocaleString(valueWithDiscount)
+
+  const values = {
+    price: hasDiscount
+      ? discountLocaleString
+      : formatValueToLocaleString(product?.price!),
+    oldPrice: hasDiscount ? formatValueToLocaleString(product?.price!) : "",
+  }
 
   const { mutate } = useDeleteProductMutation({
     onSuccess: () => {
@@ -77,10 +94,10 @@ export default function ProductDetails() {
         </Heading>
         <Box className="flex-row gap-1 items-end">
           <Text className="font-inter600 text-[24px] color-price-primary">
-            {product?.price}
+            {values.price}
           </Text>
           <Text className="font-inter600 text-[20px] color-body-primary line-through">
-            {product?.discountPercentage}
+            {values.oldPrice}
           </Text>
         </Box>
         <Text className="font-inter400 text-[16px] color-body-primary">

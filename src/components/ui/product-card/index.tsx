@@ -1,6 +1,8 @@
 import { Image, TouchableOpacity, TouchableOpacityProps } from "react-native"
 
 import { Product } from "@/@types/product"
+import { calcDiscount } from "@/utils/calc-discount"
+import { formatValueToLocaleString } from "@/utils/currency"
 
 import { Box } from "../box"
 import { Divider } from "../divider"
@@ -12,6 +14,21 @@ export type ProductCardProps = TouchableOpacityProps & {
 }
 
 export const ProductCard = ({ product, ...props }: ProductCardProps) => {
+  const hasDiscount = product?.discountPercentage > 0
+
+  const valueWithDiscount = calcDiscount(
+    product?.price,
+    product?.discountPercentage,
+  )
+  const discountLocaleString = formatValueToLocaleString(valueWithDiscount)
+
+  const values = {
+    price: hasDiscount
+      ? discountLocaleString
+      : formatValueToLocaleString(product.price),
+    oldPrice: hasDiscount ? formatValueToLocaleString(product.price) : "",
+  }
+
   return (
     <TouchableOpacity
       className="flex-1 border border-shadow-primary rounded-lg"
@@ -34,10 +51,15 @@ export const ProductCard = ({ product, ...props }: ProductCardProps) => {
           {product.description}
         </Text>
       </Box>
-      <Box className="flex-row gap-1 items-end p-2">
-        <Heading className="font-inter600">{product.price}</Heading>
-        <Text className="font-inter600 color-body-primary line-through">
-          {product.discountPercentage}
+      <Box className="flex-row gap-1 items-end p-2 flex-wrap">
+        <Heading size="sm" className="font-inter600">
+          {values.price}
+        </Heading>
+        <Text
+          size="xs"
+          className="font-inter600 color-body-primary line-through"
+        >
+          {values.oldPrice}
         </Text>
       </Box>
     </TouchableOpacity>
