@@ -84,7 +84,7 @@ export default function ProductDetails() {
 
   return (
     <Box
-      className={`flex-1 bg-white px-4 justify-between mb-[${insets.bottom}px]`}
+      className={`flex-1 bg-white px-4 pb-4 justify-between mb-[${insets.bottom}px]`}
     >
       <Box className="gap-2">
         <Image
@@ -108,7 +108,7 @@ export default function ProductDetails() {
           {product?.description}
         </Text>
       </Box>
-      <Box className="gap-2">
+      <Box className={`gap-2 pb-4`}>
         <Button
           className="bg-blue-600 data-[hover=true]:bg-blue-400 data-[active=true]:bg-blue-400"
           onPress={handlePressEditProduct}

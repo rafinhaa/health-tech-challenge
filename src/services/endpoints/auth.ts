@@ -7,9 +7,9 @@ export type AuthProps = {
   password: string
 }
 
-export const auth = async (api: HttpClient, params: AuthProps) => {
+export const auth = async (api: HttpClient, data: AuthProps) => {
   return await api.post<User, AuthProps>({
     url: "/auth/login",
-    params,
+    data,
   })
 }

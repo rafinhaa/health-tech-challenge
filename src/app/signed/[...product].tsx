@@ -77,10 +77,10 @@ export default function AddProduct() {
 
   return (
     <KeyboardAvoidingView
-      className="flex-1"
+      className={`flex-1 mb-[${insets.bottom}px] bg-white`}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <Box className={`flex-1 bg-white p-5 justify-between`}>
+      <Box className={`flex-1 bg-white p-5 justify-between pb-8`}>
         <Box className="gap-5">
           <Controller
             control={productForm.control}
@@ -272,7 +272,7 @@ export default function AddProduct() {
 
         <Button
           size="lg"
-          className={` bg-blue-600 data-[hover=true]:bg-blue-400 data-[active=true]:bg-blue-400 mb-[${insets.bottom}px]`}
+          className={` bg-blue-600 data-[hover=true]:bg-blue-400 data-[active=true]:bg-blue-400`}
           disabled={productForm.formState.isSubmitting}
           onPress={productForm.handleSubmit(handlePressSaveProduct)}
         >
